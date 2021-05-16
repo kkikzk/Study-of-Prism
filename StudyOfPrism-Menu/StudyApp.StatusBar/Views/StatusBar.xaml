@@ -1,0 +1,26 @@
+﻿<StatusBar x:Class="StudyApp.StatusBar.Views.StatusBar"
+           x:ClassModifier="internal"
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+           xmlns:local="clr-namespace:StudyApp.StatusBar.Views"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           mc:Ignorable="d" 
+           d:DesignHeight="20" d:DesignWidth="800"
+           xmlns:prism="http://prismlibrary.com/"
+           prism:ViewModelLocator.AutoWireViewModel="True"
+           VerticalAlignment="Bottom"
+           FlowDirection="RightToLeft">
+    <StatusBarItem Margin="0" FlowDirection="LeftToRight">
+        <ProgressBar Height="12" Width="200" Margin="0,0,20,0"/>
+    </StatusBarItem>
+    <StatusBarItem FlowDirection="LeftToRight" Height="22">
+        <TextBlock TextWrapping="Wrap" Text="{Binding MessageDisplay}" Foreground="#FF0017FF"/>
+    </StatusBarItem>
+    <StatusBarItem FlowDirection="LeftToRight" Height="22">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock TextWrapping="Wrap" Text="{Binding MyCommonData.LogString}" Foreground="Red"/>
+            <TextBlock TextWrapping="Wrap" Text="{Binding MyCommonData.StatusString}" Foreground="Black"/>
+        </StackPanel>
+    </StatusBarItem>
+</StatusBar>
