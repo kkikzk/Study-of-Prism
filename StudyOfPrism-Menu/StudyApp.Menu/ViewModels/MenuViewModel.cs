@@ -1,4 +1,5 @@
-﻿using Prism.Mvvm;
+﻿using Prism.Events;
+using Prism.Mvvm;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 using System;
@@ -13,12 +14,12 @@ namespace StudyApp.Manu.ViewModels
 
         public ReadOnlyReactiveCollection<MenuViewItemModel> MenuNodes { get; }
 
-        public MenuViewModel(IMenuData data)
+        public MenuViewModel(IEventAggregator eventAggrigator, IMenuData data)
         {
             var col = new ObservableCollection<MenuViewItemModel>();
             foreach (var child in data.Children)
             {
-                col.Add(new MenuViewItemModel(child));
+                col.Add(new MenuViewItemModel(eventAggrigator, child));
             }
             MenuNodes = col.ToReadOnlyReactiveCollection().AddTo(_disposables);
         }

@@ -15,6 +15,9 @@
         <Style TargetType="{x:Type MenuItem}">
             <Setter Property="Header" Value="{Binding DisplayName.Value}" />
             <Setter Property="ItemsSource" Value="{Binding Children}" />
+            <Setter Property="Command" Value="{Binding Command}" />
+            <Setter Property="IsEnabled" Value="{Binding IsEnabled.Value}" />
+            <Setter Property="Visibility" Value="{Binding Visibility.Value}" />
         </Style>
     </Menu.ItemContainerStyle>
 </Menu>
