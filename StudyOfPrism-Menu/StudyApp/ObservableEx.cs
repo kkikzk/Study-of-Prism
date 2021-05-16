@@ -3,7 +3,7 @@ using System;
 
 namespace StudyApp
 {
-    public class ObservableEx<T> : IObservableEx<T>
+    public class ObservableEx<T> : IObservableWithDefault<T>
     {
         public IObservable<T> Observable { get; }
 

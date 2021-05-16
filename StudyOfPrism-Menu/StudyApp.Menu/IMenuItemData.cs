@@ -9,8 +9,8 @@ namespace StudyApp.Manu
 
         IMenuItemData[] Children { get; }
 
-        IObservableEx<bool> IsEnabled { get; }
+        IObservableWithDefault<bool> IsEnabled { get; }
 
-        IObservableEx<Visibility> Visibility { get; }
+        IObservableWithDefault<Visibility> Visibility { get; }
     }
 }

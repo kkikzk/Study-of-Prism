@@ -14,9 +14,9 @@ namespace StudyApp
 
         public IMenuItemData[] Children { get; }
 
-        public IObservableEx<bool> IsEnabled { get; }
+        public IObservableWithDefault<bool> IsEnabled { get; }
 
-        public IObservableEx<Visibility> Visibility { get; }
+        public IObservableWithDefault<Visibility> Visibility { get; }
 
         public MenuItemData(string displayName)
             : this(displayName, new IMenuItemData[0], true, System.Windows.Visibility.Visible)
