@@ -5,13 +5,16 @@
       xmlns:local="clr-namespace:StudyApp.Manu.Views"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:vm="clr-namespace:StudyApp.Manu.ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       xmlns:prism="http://prismlibrary.com/"
-      prism:ViewModelLocator.AutoWireViewModel="True" >
-    <Grid>
-        <TextBlock Text="{Binding Message}"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center" />
-    </Grid>
+      prism:ViewModelLocator.AutoWireViewModel="True"
+      ItemsSource="{Binding MenuNodes}">
+    <Menu.ItemContainerStyle>
+        <Style TargetType="{x:Type MenuItem}">
+            <Setter Property="Header" Value="{Binding DisplayName.Value}" />
+            <Setter Property="ItemsSource" Value="{Binding Children}" />
+        </Style>
+    </Menu.ItemContainerStyle>
 </Menu>

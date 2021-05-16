@@ -13,7 +13,6 @@ namespace StudyApp.ViewModels
 
         public MainWindowViewModel()
         {
-
         }
     }
 }

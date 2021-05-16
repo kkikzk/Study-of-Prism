@@ -1,4 +1,6 @@
 ﻿using Prism.Ioc;
+using Prism.Modularity;
+using StudyApp.Manu;
 using StudyApp.Views;
 using System.Windows;
 
@@ -16,6 +18,22 @@ namespace StudyApp
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            var menu2 = new MenuItemData("メニュー2(_B)");
+            var menu3 = new MenuItemData("メニュー3(_C)");
+            var menu1 = new MenuItemData("メニュー1(_A)", new IMenuItemData[] { menu2, menu3 });
+
+            var menu5 = new MenuItemData("メニュー5(_E)");
+            var menu6 = new MenuItemData("メニュー6(_F)");
+            var menu4 = new MenuItemData("メニュー4(_D)", new IMenuItemData[] { menu5, menu6 });
+
+            IMenuData menuData = new MenuData(new IMenuItemData[] { menu1, menu4 });
+
+            containerRegistry.RegisterInstance(menuData);
+        }
+
+        protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
+        {
+            moduleCatalog.AddModule<ManuModule>();
         }
     }
 }

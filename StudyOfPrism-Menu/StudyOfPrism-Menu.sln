@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyApp", "StudyApp\StudyApp.csproj", "{98F191C3-5E31-45B6-BB6F-F347B1079BB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudyApp", "StudyApp\StudyApp.csproj", "{98F191C3-5E31-45B6-BB6F-F347B1079BB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyApp.Manu", "StudyApp.Manu\StudyApp.Manu.csproj", "{84FA9E87-5932-4798-87E6-1199DF549642}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudyApp.Maeu", "StudyApp.Menu\StudyApp.Maeu.csproj", "{591F2BA4-DBC6-48A3-A43B-9069A0724057}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{98F191C3-5E31-45B6-BB6F-F347B1079BB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98F191C3-5E31-45B6-BB6F-F347B1079BB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98F191C3-5E31-45B6-BB6F-F347B1079BB3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{84FA9E87-5932-4798-87E6-1199DF549642}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{84FA9E87-5932-4798-87E6-1199DF549642}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{84FA9E87-5932-4798-87E6-1199DF549642}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{84FA9E87-5932-4798-87E6-1199DF549642}.Release|Any CPU.Build.0 = Release|Any CPU
+		{591F2BA4-DBC6-48A3-A43B-9069A0724057}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{591F2BA4-DBC6-48A3-A43B-9069A0724057}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{591F2BA4-DBC6-48A3-A43B-9069A0724057}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{591F2BA4-DBC6-48A3-A43B-9069A0724057}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
