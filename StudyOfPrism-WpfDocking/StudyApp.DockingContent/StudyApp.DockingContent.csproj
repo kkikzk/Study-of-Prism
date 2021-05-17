@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>StudyApp.DockingContent</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Prism.Wpf" Version="8.0.0.1909" />
+    <PackageReference Include="System.Reactive" Version="5.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WpfDockingNetCore\WpfDockingNetCore.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Views\Property.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Output - コピー - コピー.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>Output - コピー.xaml.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Output - コピー.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>Output.xaml.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\Property.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

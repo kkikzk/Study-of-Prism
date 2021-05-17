@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>StudyApp</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Prism.Unity" Version="8.0.0.1909" />
+    <PackageReference Include="ReactiveProperty" Version="7.10.0" />
+    <PackageReference Include="ReactiveProperty.WPF" Version="7.10.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Design.StudyApp\Design.StudyApp.csproj" />
+    <ProjectReference Include="..\StudyApp.DockingContent.Output\StudyApp.DockingContent.Output.csproj" />
+    <ProjectReference Include="..\StudyApp.DockingContent.ProjectTree\StudyApp.DockingContent.ProjectTree.csproj" />
+    <ProjectReference Include="..\StudyApp.DockingContent.Property\StudyApp.DockingContent.Property.csproj" />
+    <ProjectReference Include="..\StudyApp.DockingContent\StudyApp.DockingContent.csproj" />
+  </ItemGroup>
+</Project>

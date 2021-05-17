@@ -1,0 +1,42 @@
+﻿<UserControl
+    x:Class="StudyApp.DockingContent.ProjectTree.Views.ProjectTree"
+    x:ClassModifier="internal"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:ri="clr-namespace:Reactive.Bindings.Interactivity;assembly=ReactiveProperty.Wpf"
+    xmlns:local="clr-namespace:StudyApp.DockingContent.ProjectTree.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:vm="clr-namespace:StudyApp.DockingContent.ProjectTree.ViewModels"  
+    mc:Ignorable="d" 
+    d:DesignHeight="600" d:DesignWidth="250"
+    xmlns:prism="http://prismlibrary.com/"
+    prism:ViewModelLocator.AutoWireViewModel="True" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="20" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <ComboBox Grid.Row="1" IsEditable="True" >
+        </ComboBox>
+        <TreeView Grid.Row="2" ItemsSource="{Binding Nodes}">
+            <TreeView.Resources>
+                <Style TargetType="TreeViewItem">
+                    <Setter Property="IsExpanded" Value="{Binding Path=IsExpanded.Value}" />
+                </Style>
+            </TreeView.Resources>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectedItemChanged">
+                    <ri:EventToReactiveCommand Command="{Binding SelectedItemChangedCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type vm:ProjectTreeViewModel}" ItemsSource="{Binding Nodes}">
+                    <TextBlock Text="{Binding DisplayName.Value}" />
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+    </Grid>
+</UserControl>

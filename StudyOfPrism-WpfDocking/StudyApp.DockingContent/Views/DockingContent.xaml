@@ -1,0 +1,32 @@
+﻿<ContentControl
+    x:Class="StudyApp.DockingContent.Views.DockingContent"
+    x:ClassModifier="internal"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:StudyApp.DockingContent.Views"
+    xmlns:dz="http://schemas.devzest.com/presentation/docking"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    mc:Ignorable="d" 
+    d:DesignHeight="300" d:DesignWidth="300"
+    xmlns:prism="http://prismlibrary.com/"
+    prism:ViewModelLocator.AutoWireViewModel="True" >
+    <dz:DockControl
+        x:Name="dockControl"
+        dz:AutoHide.Animation="Slide" 
+        DockTreeZOrder="Right, Left, Top, Bottom">
+    <!--FocusedItemChanged="OnFocusedItemChanged"
+        ActiveItemChanged="OnActiveItemChanged"
+        ActiveDocumentChanged="OnActiveDocumentChanged"
+        DockItemStateChanging="OnDockItemStateChanging"
+        DockItemStateChanged="OnDockItemStateChanged"-->
+        <dz:DockControl.DockItems>
+            <local:ProjectTree x:Name="projectTree" ShowAction="{dz:ShowAsDockPositionAction DockPosition=Left}" />
+            <local:Output x:Name="output" ShowAction="{dz:ShowAsDockPositionAction DockPosition=Bottom}" />
+            <local:Property x:Name="property" ShowAction="{dz:ShowAsDockPositionAction DockPosition=Right}" />
+            <!--
+                <local:SavedLayout x:Name="savedLayout" ShowAction="{dz:ShowAsDockPositionAction DockPosition=BottomAutoHide}" />
+                <local:Welcome x:Name="welcome" ShowAction="{dz:ShowAsDockPositionAction DockPosition=Document}" />-->
+        </dz:DockControl.DockItems>
+    </dz:DockControl>
+</ContentControl>
