@@ -1,0 +1,92 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mwt="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Classic"
+    xmlns:common="clr-namespace:DevZest.Windows"
+    xmlns:docking="clr-namespace:DevZest.Windows.Docking"
+    xmlns:primitives="clr-namespace:DevZest.Windows.Docking.Primitives"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:b="clr-namespace:DevZest">
+
+
+    <DataTemplate x:Key="CloseButtonTemplate">
+        <Path StrokeThickness="1" Stroke="{Binding RelativeSource={RelativeSource AncestorType={x:Type primitives:InertButton}}, Path=Foreground}" Data="M0,0 L7,7 M7,0 L0,7" />
+    </DataTemplate>
+
+    <Brush x:Key="WindowBorderColor">Transparent</Brush>
+    <Brush x:Key="TitleBackColor">LightBlue</Brush>
+    <GridLength x:Key="BorderWidth">3</GridLength>
+    <Style TargetType="{x:Type primitives:NativeFloatingWindow}">
+        <Setter Property="Left" Value="{Binding Path=Left, Mode=TwoWay}" />
+        <Setter Property="Top" Value="{Binding Path=Top, Mode=TwoWay}" />
+        <Setter Property="Width" Value="{Binding Path=Width, Mode=TwoWay}" />
+        <Setter Property="Height" Value="{Binding Path=Height, Mode=TwoWay}" />
+        <Setter Property="DoubleClickCommand" Value="{x:Static docking:DockCommands.ToggleWindowState}" />
+        <Setter Property="WindowStyle" Value="None" />
+        <Setter Property="AllowsTransparency" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type primitives:NativeFloatingWindow}">
+                    <AdornerDecorator>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="{StaticResource BorderWidth}"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="{StaticResource BorderWidth}"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="{StaticResource BorderWidth}"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="{StaticResource BorderWidth}"/>
+                            </Grid.RowDefinitions>
+                            <Grid.Effect>
+                                <DropShadowEffect BlurRadius="5"  RenderingBias="Quality" ShadowDepth="1"/>
+                            </Grid.Effect>
+                            <!-- ボーダーの設定(リサイズできるように) -->
+                            <Border Grid.Column="0" Grid.Row="0" Background="{StaticResource WindowBorderColor}" b:MoveResizeBehavior.ResizeWindow="TopLeft" />
+                            <Border Grid.Column="1" Grid.Row="0" Background="{StaticResource WindowBorderColor}" b:MoveResizeBehavior.ResizeWindow="Top" />
+                            <Border Grid.Column="2" Grid.Row="0" Background="{StaticResource WindowBorderColor}" b:MoveResizeBehavior.ResizeWindow="TopRight" />
+                            <Border Grid.Column="0" Grid.Row="1" Background="{StaticResource WindowBorderColor}" b:MoveResizeBehavior.ResizeWindow="Left" />
+                            <Border Grid.Column="2" Grid.Row="1" Background="{StaticResource WindowBorderColor}" b:MoveResizeBehavior.ResizeWindow="Right" />
+                            <Border Grid.Column="0" Grid.Row="2" Background="{StaticResource WindowBorderColor}" b:MoveResizeBehavior.ResizeWindow="BottomLeft" />
+                            <Border Grid.Column="1" Grid.Row="2" Background="{StaticResource WindowBorderColor}" b:MoveResizeBehavior.ResizeWindow="Bottom" />
+                            <Border Grid.Column="2" Grid.Row="2" Background="{StaticResource WindowBorderColor}" b:MoveResizeBehavior.ResizeWindow="BottomRight" />
+                            <!-- ドッキングウィンドウのコンテンツ設定 -->
+                            <Grid Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" Grid.Column="1" Grid.Row="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" Background="{StaticResource TitleBackColor}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <!-- タイトルテキスト -->
+                                    <TextBlock Grid.Column="0" Background="{StaticResource TitleBackColor}" Padding="3">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding CountOfVisiblePanes}" Value="1">
+                                                        <Setter Property="Text" Value="{Binding FirstVisiblePane.SelectedItem.Title}" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                    <!-- 閉じるボタン -->
+                                    <primitives:InertButton x:Name="performCloseButton" Command="docking:DockCommands.PerformClose" CommandTarget="{Binding SelectedItem}"
+                                        Grid.Column="1" Margin="2,2,4,2" ToolTip="Close" ContentTemplate="{StaticResource CloseButtonTemplate}"
+                                        VerticalAlignment="Center" />
+                                </Grid>
+                                <ContentPresenter Grid.Row="1" Content="{Binding DockTree}" />
+                            </Grid>
+                        </Grid>
+                    </AdornerDecorator>
+                    <ControlTemplate.Triggers>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
