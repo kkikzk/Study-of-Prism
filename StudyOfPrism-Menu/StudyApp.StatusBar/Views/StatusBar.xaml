@@ -11,16 +11,10 @@
            prism:ViewModelLocator.AutoWireViewModel="True"
            VerticalAlignment="Bottom"
            FlowDirection="RightToLeft">
+    <StatusBarItem FlowDirection="LeftToRight" Height="20" Width="Auto">
+        <TextBlock Height="12" Width="200" Margin="0,0,0,0" TextWrapping="Wrap" d:Text="aaa" Text="{Binding DisplayText}" Foreground="#FF0017FF" HorizontalAlignment="Left"/>
+    </StatusBarItem>
     <StatusBarItem Margin="0" FlowDirection="LeftToRight">
         <ProgressBar Height="12" Width="200" Margin="0,0,20,0"/>
-    </StatusBarItem>
-    <StatusBarItem FlowDirection="LeftToRight" Height="22">
-        <TextBlock TextWrapping="Wrap" Text="{Binding MessageDisplay}" Foreground="#FF0017FF"/>
-    </StatusBarItem>
-    <StatusBarItem FlowDirection="LeftToRight" Height="22">
-        <StackPanel Orientation="Horizontal">
-            <TextBlock TextWrapping="Wrap" Text="{Binding MyCommonData.LogString}" Foreground="Red"/>
-            <TextBlock TextWrapping="Wrap" Text="{Binding MyCommonData.StatusString}" Foreground="Black"/>
-        </StackPanel>
     </StatusBarItem>
 </StatusBar>

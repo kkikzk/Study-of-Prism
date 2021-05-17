@@ -30,11 +30,11 @@ namespace StudyApp
 
             _isEnabled = new Subject<bool>();
             _isEnabled.OnNext(isEnabled);
-            IsEnabled = new ObservableEx<bool>(_isEnabled, isEnabled);
+            IsEnabled = new ObservableWithDefault<bool>(_isEnabled, isEnabled);
 
             _visibility = new Subject<Visibility>();
             _visibility.OnNext(visibility);
-            Visibility = new ObservableEx<Visibility>(_visibility, visibility);
+            Visibility = new ObservableWithDefault<Visibility>(_visibility, visibility);
         }
     }
 }

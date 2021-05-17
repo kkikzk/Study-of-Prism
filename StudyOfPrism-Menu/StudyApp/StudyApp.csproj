@@ -10,6 +10,9 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\StudyApp.Menu\StudyApp.Menu.csproj" />
+    <ProjectReference Include="..\StudyApp.Pane.Main\StudyApp.Pane.Main.csproj" />
+    <ProjectReference Include="..\StudyApp.Pane.ProjectTree\StudyApp.Pane.ProjectTree.csproj" />
+    <ProjectReference Include="..\StudyApp.Pane.Property\StudyApp.Pane.Property.csproj" />
     <ProjectReference Include="..\StudyApp.StatusBar\StudyApp.StatusBar.csproj" />
   </ItemGroup>
 </Project>

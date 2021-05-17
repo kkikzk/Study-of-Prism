@@ -1,6 +1,9 @@
 ﻿using Prism.Ioc;
 using Prism.Modularity;
 using StudyApp.Manu;
+using StudyApp.Pane.Main;
+using StudyApp.Pane.ProjectTree;
+using StudyApp.Pane.Property;
 using StudyApp.StatusBar;
 using StudyApp.Views;
 using System.Windows;
@@ -34,8 +37,11 @@ namespace StudyApp
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
-            moduleCatalog.AddModule<ManuModule>();
+            moduleCatalog.AddModule<MenuModule>();
             moduleCatalog.AddModule<StatusBarModule>();
+            moduleCatalog.AddModule<ProjectTreeModule>();
+            moduleCatalog.AddModule<PropertyModule>();
+            moduleCatalog.AddModule<MainModule>();
         }
     }
 }

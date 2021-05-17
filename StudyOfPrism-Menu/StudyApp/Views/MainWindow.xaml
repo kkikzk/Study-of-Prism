@@ -14,7 +14,16 @@
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <ContentControl Grid.Row="0" prism:RegionManager.RegionName="Menu" d:Content="メニュー" />
-        <ContentControl Grid.Row="1" prism:RegionManager.RegionName="ContentRegion" />
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="200" />
+            </Grid.ColumnDefinitions>
+            <ContentControl Grid.Column="0" prism:RegionManager.RegionName="ProjectTree" d:Content="ツリーペイン" />
+            <ContentControl Grid.Column="1" prism:RegionManager.RegionName="MainView" d:Content="メインペイン" />
+            <ContentControl Grid.Column="2" prism:RegionManager.RegionName="PropertyView" d:Content="プロパティペイン" />
+        </Grid>
         <ContentControl Grid.Row="2" prism:RegionManager.RegionName="StatusBar"  d:Content="ステータスバー" />
     </Grid>
 </Window>

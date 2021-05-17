@@ -5,7 +5,7 @@ using System.Reactive.Disposables;
 
 namespace StudyApp.StatusBar.ViewModels
 {
-    public class StatusBarViewModel : BindableBase, IDisposable
+    internal class StatusBarViewModel : BindableBase, IDisposable
     {
         private readonly CompositeDisposable _disposables = new CompositeDisposable();
 

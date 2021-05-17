@@ -3,13 +3,13 @@ using System;
 
 namespace StudyApp
 {
-    public class ObservableEx<T> : IObservableWithDefault<T>
+    public class ObservableWithDefault<T> : IObservableWithDefault<T>
     {
         public IObservable<T> Observable { get; }
 
         public T Default { get; }
 
-        public ObservableEx(IObservable<T> observable, T defaultValue)
+        public ObservableWithDefault(IObservable<T> observable, T defaultValue)
         {
             Observable = observable;
             Default = defaultValue;
