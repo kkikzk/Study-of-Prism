@@ -16,5 +16,8 @@
     <ProjectReference Include="..\StudyApp.DockingContent.ProjectTree\StudyApp.DockingContent.ProjectTree.csproj" />
     <ProjectReference Include="..\StudyApp.DockingContent.Property\StudyApp.DockingContent.Property.csproj" />
     <ProjectReference Include="..\StudyApp.DockingContent\StudyApp.DockingContent.csproj" />
+    <ProjectReference Include="..\StudyApp.Menu\StudyApp.Menu.csproj" />
+    <ProjectReference Include="..\StudyApp.StatusBar\StudyApp.StatusBar.csproj" />
+    <ProjectReference Include="..\StudyApp.ToolBar\StudyApp.ToolBar.csproj" />
   </ItemGroup>
 </Project>

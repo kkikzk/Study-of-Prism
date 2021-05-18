@@ -3,23 +3,29 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyApp", "StudyApp\StudyApp.csproj", "{AB2DB7B7-B5A6-4A9E-9804-196CFDEECA55}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudyApp", "StudyApp\StudyApp.csproj", "{AB2DB7B7-B5A6-4A9E-9804-196CFDEECA55}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{8EDF0874-F439-4FA8-80C6-74D0FA67A90A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfDockingNetCore", "WpfDockingNetCore\WpfDockingNetCore.csproj", "{A62A2C31-3EE8-4168-A440-66B2FD540840}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyApp.DockingContent", "StudyApp.DockingContent\StudyApp.DockingContent.csproj", "{E811C7AC-16A1-40E9-A0DB-D182559C3D8E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudyApp.DockingContent", "StudyApp.DockingContent\StudyApp.DockingContent.csproj", "{E811C7AC-16A1-40E9-A0DB-D182559C3D8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyApp.DockingContent.Output", "StudyApp.DockingContent.Output\StudyApp.DockingContent.Output.csproj", "{BF8FEBD0-0A84-49BA-94E9-99FA9136C698}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudyApp.DockingContent.Output", "StudyApp.DockingContent.Output\StudyApp.DockingContent.Output.csproj", "{BF8FEBD0-0A84-49BA-94E9-99FA9136C698}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyApp.DockingContent.ProjectTree", "StudyApp.DockingContent.ProjectTree\StudyApp.DockingContent.ProjectTree.csproj", "{A9F36B19-797A-4247-BBA2-6D2357CC86A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudyApp.DockingContent.ProjectTree", "StudyApp.DockingContent.ProjectTree\StudyApp.DockingContent.ProjectTree.csproj", "{A9F36B19-797A-4247-BBA2-6D2357CC86A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyApp.DockingContent.Property", "StudyApp.DockingContent.Property\StudyApp.DockingContent.Property.csproj", "{69D9182F-C01B-49DB-9EAD-7C962F26FAF2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudyApp.DockingContent.Property", "StudyApp.DockingContent.Property\StudyApp.DockingContent.Property.csproj", "{69D9182F-C01B-49DB-9EAD-7C962F26FAF2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Design", "Design", "{606C0506-21D6-422E-84EA-4DD933437200}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Design.StudyApp", "Design.StudyApp\Design.StudyApp.csproj", "{CA0035D8-BD14-41BC-A597-A5A3D69C470C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Design.StudyApp", "Design.StudyApp\Design.StudyApp.csproj", "{CA0035D8-BD14-41BC-A597-A5A3D69C470C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyApp.Menu", "StudyApp.Menu\StudyApp.Menu.csproj", "{47A8E814-0CA7-478D-BB56-717C0142054B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyApp.ToolBar", "StudyApp.ToolBar\StudyApp.ToolBar.csproj", "{F81989A4-B712-4A9E-AC22-0A35F6470884}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyApp.StatusBar", "StudyApp.StatusBar\StudyApp.StatusBar.csproj", "{94916279-DF96-4EE6-8C3D-7A3637EA7923}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +61,18 @@ Global
 		{CA0035D8-BD14-41BC-A597-A5A3D69C470C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA0035D8-BD14-41BC-A597-A5A3D69C470C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA0035D8-BD14-41BC-A597-A5A3D69C470C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47A8E814-0CA7-478D-BB56-717C0142054B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47A8E814-0CA7-478D-BB56-717C0142054B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47A8E814-0CA7-478D-BB56-717C0142054B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47A8E814-0CA7-478D-BB56-717C0142054B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F81989A4-B712-4A9E-AC22-0A35F6470884}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F81989A4-B712-4A9E-AC22-0A35F6470884}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F81989A4-B712-4A9E-AC22-0A35F6470884}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F81989A4-B712-4A9E-AC22-0A35F6470884}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94916279-DF96-4EE6-8C3D-7A3637EA7923}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94916279-DF96-4EE6-8C3D-7A3637EA7923}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94916279-DF96-4EE6-8C3D-7A3637EA7923}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94916279-DF96-4EE6-8C3D-7A3637EA7923}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

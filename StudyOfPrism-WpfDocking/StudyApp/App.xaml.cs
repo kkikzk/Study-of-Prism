@@ -7,6 +7,9 @@ using StudyApp.DockingContent.Output;
 using StudyApp.DockingContent.ProjectTree;
 using StudyApp.DockingContent.ProjectTree.ViewModels;
 using StudyApp.DockingContent.Property;
+using StudyApp.Menu;
+using StudyApp.StatusBar;
+using StudyApp.ToolBar;
 using StudyApp.Views;
 using System;
 using System.Reactive.Subjects;
@@ -37,6 +40,9 @@ namespace StudyApp
             moduleCatalog.AddModule<ProjectTreeModule>();
             moduleCatalog.AddModule<OutputModule>();
             moduleCatalog.AddModule<PropertyModule>();
+            moduleCatalog.AddModule<MenuModule>();
+            moduleCatalog.AddModule<ToolBarModule>();
+            moduleCatalog.AddModule<StatusBarModule>();
         }
     }
 
