@@ -1,4 +1,5 @@
 ﻿using Design.StudyApp;
+using Design.StudyApp.ActiveViewManager;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Mvvm;
@@ -8,6 +9,7 @@ using StudyApp.DockingContent.ProjectTree;
 using StudyApp.DockingContent.ProjectTree.ViewModels;
 using StudyApp.DockingContent.Property;
 using StudyApp.Menu;
+using StudyApp.Model;
 using StudyApp.StatusBar;
 using StudyApp.ToolBar;
 using StudyApp.Views;
@@ -31,7 +33,8 @@ namespace StudyApp
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterInstance<IProjectTreeData>(_data.ProjectTreeData);
+            containerRegistry.RegisterInstance(_data.ActiveViewManager);
+            containerRegistry.RegisterInstance(_data.ProjectTreeData);
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
@@ -48,7 +51,9 @@ namespace StudyApp
 
     public class StudyAppData
     {
-        public ProjectTreeData ProjectTreeData { get; }
+        public IActiveViewManager ActiveViewManager { get; } = new ActiveViewManager();
+
+        public IProjectTreeData ProjectTreeData { get; }
 
         public StudyAppData()
         {

@@ -1,26 +1,38 @@
-﻿using Prism.Mvvm;
+﻿using Design.StudyApp;
+using Design.StudyApp.ActiveViewManager;
+using Prism.Mvvm;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 using System;
-using System.Collections.ObjectModel;
 using System.Reactive.Disposables;
+using System.Reactive.Subjects;
 
 namespace StudyApp.DockingContent.ProjectTree.ViewModels
 {
-    internal class ProjectTreeViewModel : BindableBase, IDisposable
+    internal class ProjectTreeViewModel : BindableBase, IDisposable, IActiveView
     {
         private readonly CompositeDisposable _disposables = new CompositeDisposable();
         private readonly IProjectTreeData _data;
+        private readonly IActiveViewManager _activeViewManager;
 
         public ReactiveCollection<ProjectTreeItemViewModelBase> Nodes { get; }
 
-        public ProjectTreeViewModel(IProjectTreeData data)
+        public ICommand Copy { get; }
+
+        public ICommand Paste { get; }
+
+        public ProjectTreeViewModel(IProjectTreeData data, IActiveViewManager activeViewManager)
         {
             _data = data;
-
             var col = new ReactiveCollection<ProjectTreeItemViewModelBase>();
-            col.Add(new RootProjectTreeItemViewModel(data.RootNode));
+            col.Add(new RootProjectTreeItemViewModel(_data.RootNode));
             Nodes = col.AddTo(_disposables);
+
+            _activeViewManager = activeViewManager;
+            _activeViewManager.Activate(this);
+
+            Copy = new Command();
+            Paste = new Command();
         }
 
         public void Dispose()
@@ -29,73 +41,32 @@ namespace StudyApp.DockingContent.ProjectTree.ViewModels
         }
     }
 
-    internal class ProjectTreeItemViewModelBase : BindableBase, IDisposable
+    internal class Command : ICommand
     {
-        protected readonly CompositeDisposable _disposables = new CompositeDisposable();
+        public IObservableWithDefault<bool> IsEnabled { get; }
 
-        public ReadOnlyReactivePropertySlim<string> DisplayName { private set; get; }
-
-        public ReadOnlyReactivePropertySlim<bool> IsExpanded { private set; get; }
-
-        public ReactiveCollection<ProjectTreeItemViewModelBase> Nodes { protected set; get; }
-
-        protected ProjectTreeItemViewModelBase(INodeDataBase data)
+        public Command()
         {
-            DisplayName = new ReactiveProperty<string>(data.DisplayName.Observable, data.DisplayName.Default)
-                .ToReadOnlyReactivePropertySlim().AddTo(_disposables);
-            IsExpanded = new ReactiveProperty<bool>(data.IsExpanded.Observable, data.IsExpanded.Default)
-                .ToReadOnlyReactivePropertySlim().AddTo(_disposables);
+            var temp = new Subject<bool>();
+            IsEnabled = new ObservableWithDefault<bool>(temp, true);
         }
 
-        public void Dispose()
+        public void Execute()
         {
-            _disposables.Dispose();
+
         }
     }
 
-    internal class RootProjectTreeItemViewModel : ProjectTreeItemViewModelBase
+    internal class ObservableWithDefault<T> : IObservableWithDefault<T>
     {
-        public RootProjectTreeItemViewModel(IRootNodeData data)
-            : base(data)
-        {
-            Nodes = new ReactiveCollection<ProjectTreeItemViewModelBase>();
-            foreach (var it in data.ControllerNodes)
-            {
-                Nodes.Add(new ControllerProjectTreeItemViewModel(it));
-            }
-        }
-    }
+        public IObservable<T> Observable { get; }
 
-    internal class ControllerProjectTreeItemViewModel : ProjectTreeItemViewModelBase
-    {
-        public ControllerProjectTreeItemViewModel(IControllerNodeData data)
-            : base(data)
-        {
-            var col = new ReactiveCollection<ProjectTreeItemViewModelBase>();
-            col.Add(new ProgramRootProjectTreeItemViewModel(data.ProgramRootNode));
-            Nodes = col.AddTo(_disposables);
-        }
-    }
+        public T Default { get; }
 
-    internal class ProgramRootProjectTreeItemViewModel : ProjectTreeItemViewModelBase
-    {
-        public ProgramRootProjectTreeItemViewModel(IProgramRootNodeData data)
-            : base(data)
+        public ObservableWithDefault(IObservable<T> observable, T defaultValue)
         {
-            Nodes = new ReactiveCollection<ProjectTreeItemViewModelBase>();
-            foreach (var it in data.ProgramNodes)
-            {
-                Nodes.Add(new ProgramProjectTreeItemViewModel(it));
-            }
-        }
-    }
-
-    internal class ProgramProjectTreeItemViewModel : ProjectTreeItemViewModelBase
-    {
-        public ProgramProjectTreeItemViewModel(IProgramNodeData data)
-            : base(data)
-        {
-            Nodes = new ReactiveCollection<ProjectTreeItemViewModelBase>().AddTo(_disposables);
+            Observable = observable;
+            Default = defaultValue;
         }
     }
 }
