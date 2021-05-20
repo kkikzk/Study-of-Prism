@@ -23,6 +23,7 @@ namespace StudyApp.DockingContent.ProjectTree.ViewModels
         public ProjectTreeViewModel(IProjectTreeData data, IActiveViewManager activeViewManager)
         {
             _data = data;
+            _disposables.Add(_data);
 
             _activeViewManager = activeViewManager;
             _activeViewManager.Activate(this);
