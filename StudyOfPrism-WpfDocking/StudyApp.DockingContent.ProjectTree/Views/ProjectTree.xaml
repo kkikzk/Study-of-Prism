@@ -21,7 +21,7 @@
         </Grid.RowDefinitions>
         <ComboBox Grid.Row="1" IsEditable="True" >
         </ComboBox>
-        <TreeView Grid.Row="2" ItemsSource="{Binding Nodes}">
+        <TreeView Grid.Row="2" ItemsSource="{Binding Children}">
             <TreeView.Resources>
                 <Style TargetType="TreeViewItem">
                     <Setter Property="IsExpanded" Value="{Binding Path=IsExpanded.Value}" />
@@ -33,7 +33,7 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
             <TreeView.ItemTemplate>
-                <HierarchicalDataTemplate DataType="{x:Type vm:ProjectTreeViewModel}" ItemsSource="{Binding Nodes}">
+                <HierarchicalDataTemplate DataType="{x:Type vm:ProjectTreeViewModel}" ItemsSource="{Binding Children}">
                     <TextBlock Text="{Binding DisplayName.Value}" />
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>

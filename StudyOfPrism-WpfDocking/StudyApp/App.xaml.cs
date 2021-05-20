@@ -3,6 +3,8 @@ using Design.StudyApp.ActiveViewManager;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Mvvm;
+using Reactive.Bindings;
+using Reactive.Bindings.Extensions;
 using StudyApp.DockingContent;
 using StudyApp.DockingContent.Output;
 using StudyApp.DockingContent.ProjectTree;
@@ -14,6 +16,7 @@ using StudyApp.StatusBar;
 using StudyApp.ToolBar;
 using StudyApp.Views;
 using System;
+using System.Reactive.Disposables;
 using System.Reactive.Subjects;
 using System.Windows;
 
@@ -57,12 +60,12 @@ namespace StudyApp
 
         public StudyAppData()
         {
-            var main = new ProgramNodeData("Main", true);
-            var sub = new ProgramNodeData("Sub", true);
-            var programRootNode = new ProgramRootNodeData("プログラム", true, new[] { main, sub });
-            var controller = new ControllerNodeData("コントローラ1: ORiN3.Provider.DNWA.Dummy", true, programRootNode);
-            var root = new RootNodeData("プロジェクト", true, new[] { controller });
-            ProjectTreeData = new ProjectTreeData(root);
+            var main = new ProjectTreeData("Main", true);
+            var sub = new ProjectTreeData("Sub", true);
+            var programRootNode = new ProjectTreeData("プログラム", true, main, sub);
+            var controller = new ProjectTreeData("コントローラ1: ORiN3.Provider.DNWA.Dummy", true, programRootNode);
+            var root = new ProjectTreeData("プロジェクト", true, controller);
+            ProjectTreeData = new ProjectTreeData("Root", true, root);
         }
     }
 
@@ -79,68 +82,40 @@ namespace StudyApp
         }
     }
 
-    public class NodeDataBase : BindableBase, INodeDataBase
-    {
-        public IObservableWithDefault<string> DisplayName { private set; get; }
-
-        public IObservableWithDefault<bool> IsExpanded { private set; get; }
-
-        protected NodeDataBase(string displayName, bool isExpanded)
-        {
-            DisplayName = new ObservableWithDefault<string>(displayName);
-            IsExpanded = new ObservableWithDefault<bool>(isExpanded);
-        }
-    }
-
     public class ProjectTreeData : IProjectTreeData
     {
-        public IRootNodeData RootNode { get; }
+        private readonly CompositeDisposable _disposables = new CompositeDisposable();
 
-        public ProjectTreeData(IRootNodeData rootNode)
+        public ReactiveCollection<IProjectTreeData> Children { get; }
+
+        public ReactiveProperty<string> DisplayName { get; }
+
+        public ReactiveProperty<bool> IsExpanded { get; }
+
+        public ProjectTreeData(string name, bool isExpanded)
+            : this(name, isExpanded, new ReactiveCollection<IProjectTreeData>())
         {
-            RootNode = rootNode;
         }
-    }
 
-    public class RootNodeData : NodeDataBase, IRootNodeData
-    {
-        public IControllerNodeData[] ControllerNodes { private set; get; }
-
-        public RootNodeData(string displayName, bool isExpanded, IControllerNodeData[] controllerNodes)
-            : base(displayName, isExpanded)
+        public ProjectTreeData(string name, bool isExpanded, params IProjectTreeData[] data)
+            : this(name, isExpanded)
         {
-            ControllerNodes = controllerNodes;
+            foreach (var it in data)
+            {
+                Children.Add(it);
+            }
         }
-    }
 
-    public class ControllerNodeData : NodeDataBase, IControllerNodeData
-    {
-        public IProgramRootNodeData ProgramRootNode { private set; get; }
-
-        public ControllerNodeData(string displayName, bool isExpanded, IProgramRootNodeData programRootNodeData)
-            : base(displayName, isExpanded)
+        public ProjectTreeData(string name, bool isExpanded, ReactiveCollection<IProjectTreeData> children)
         {
-            ProgramRootNode = programRootNodeData;
+            DisplayName = new ReactiveProperty<string>(name).AddTo(_disposables);
+            IsExpanded = new ReactiveProperty<bool>(isExpanded).AddTo(_disposables);
+            Children = children;
         }
-    }
 
-    public class ProgramRootNodeData : NodeDataBase, IProgramRootNodeData
-    {
-
-        public IProgramNodeData[] ProgramNodes { private set; get; }
-
-        public ProgramRootNodeData(string displayName, bool isExpanded, IProgramNodeData[] programRootNodeData)
-            : base(displayName, isExpanded)
+        public void Dispose()
         {
-            ProgramNodes = programRootNodeData;
-        }
-    }
-
-    public class ProgramNodeData : NodeDataBase, IProgramNodeData
-    {
-        public ProgramNodeData(string displayName, bool isExpanded)
-            : base(displayName, isExpanded)
-        {
+            _disposables.Dispose();
         }
     }
 }

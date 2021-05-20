@@ -1,36 +1,17 @@
-﻿using Design.StudyApp;
-using System.ComponentModel;
+﻿using Reactive.Bindings;
+using System;
 
 namespace StudyApp.DockingContent.ProjectTree.ViewModels
 {
-    public interface IProjectTreeData
+    public interface IProjectTreeData : INodeDataBase, IDisposable
     {
-        IRootNodeData RootNode { get; }
+        ReactiveCollection<IProjectTreeData> Children { get; }
     }
 
-    public interface INodeDataBase : INotifyPropertyChanged
+    public interface INodeDataBase : IDisposable
     {
-        IObservableWithDefault<string> DisplayName { get; }
+        ReactiveProperty<string> DisplayName { get; }
 
-        IObservableWithDefault<bool> IsExpanded { get; }
-    }
-
-    public interface IRootNodeData : INodeDataBase
-    {
-        IControllerNodeData[] ControllerNodes { get; }
-    }
-
-    public interface IControllerNodeData : INodeDataBase
-    {
-        IProgramRootNodeData ProgramRootNode { get; }
-    }
-
-    public interface IProgramRootNodeData : INodeDataBase
-    {
-        IProgramNodeData[] ProgramNodes { get; }
-    }
-
-    public interface IProgramNodeData : INodeDataBase
-    {
+        ReactiveProperty<bool> IsExpanded { get; }
     }
 }

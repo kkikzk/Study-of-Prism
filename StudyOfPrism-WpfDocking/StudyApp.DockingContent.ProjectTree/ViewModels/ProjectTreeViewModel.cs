@@ -2,7 +2,6 @@
 using Design.StudyApp.ActiveViewManager;
 using Prism.Mvvm;
 using Reactive.Bindings;
-using Reactive.Bindings.Extensions;
 using System;
 using System.Reactive.Disposables;
 using System.Reactive.Subjects;
@@ -15,7 +14,7 @@ namespace StudyApp.DockingContent.ProjectTree.ViewModels
         private readonly IProjectTreeData _data;
         private readonly IActiveViewManager _activeViewManager;
 
-        public ReactiveCollection<ProjectTreeItemViewModelBase> Nodes { get; }
+        public ReactiveCollection<IProjectTreeData> Children { get { return _data.Children; } }
 
         public ICommand Copy { get; }
 
@@ -24,9 +23,6 @@ namespace StudyApp.DockingContent.ProjectTree.ViewModels
         public ProjectTreeViewModel(IProjectTreeData data, IActiveViewManager activeViewManager)
         {
             _data = data;
-            var col = new ReactiveCollection<ProjectTreeItemViewModelBase>();
-            col.Add(new RootProjectTreeItemViewModel(_data.RootNode));
-            Nodes = col.AddTo(_disposables);
 
             _activeViewManager = activeViewManager;
             _activeViewManager.Activate(this);
