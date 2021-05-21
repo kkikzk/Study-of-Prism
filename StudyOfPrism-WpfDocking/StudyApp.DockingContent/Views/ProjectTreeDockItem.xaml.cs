@@ -1,11 +1,11 @@
 ﻿namespace StudyApp.DockingContent.Views
 {
     /// <summary>
-    /// Output.xaml の相互作用ロジック
+    /// ProjectTreeDockItem.xaml の相互作用ロジック
     /// </summary>
-    internal partial class Output
+    internal partial class ProjectTreeDockItem
     {
-        public Output()
+        public ProjectTreeDockItem()
         {
             InitializeComponent();
         }

@@ -1,69 +1,28 @@
-﻿using Design.StudyApp;
-using Design.StudyApp.ActiveViewManager;
-using Prism.Mvvm;
+﻿using Design.StudyApp.ActiveViewManager;
 using Reactive.Bindings;
-using System;
-using System.Reactive.Disposables;
-using System.Reactive.Subjects;
+using StudyApp.DockingContent.Base.ViewModels;
 
 namespace StudyApp.DockingContent.ProjectTree.ViewModels
 {
-    internal class ProjectTreeViewModel : BindableBase, IDisposable, IActiveView
+    internal class ProjectTreeViewModel : ContentBaseViewModel
     {
-        private readonly CompositeDisposable _disposables = new CompositeDisposable();
         private readonly IProjectTreeData _data;
-        private readonly IActiveViewManager _activeViewManager;
 
         public ReactiveCollection<IProjectTreeData> Children { get { return _data.Children; } }
 
-        public ICommand Copy { get; }
-
-        public ICommand Paste { get; }
-
         public ProjectTreeViewModel(IProjectTreeData data, IActiveViewManager activeViewManager)
+            : base(activeViewManager)
         {
             _data = data;
-            _disposables.Add(_data);
-
-            _activeViewManager = activeViewManager;
-            _activeViewManager.Activate(this);
-
-            Copy = new Command();
-            Paste = new Command();
+            Disposables.Add(_data);
         }
 
-        public void Dispose()
+        protected override void CopyFunction()
         {
-            _disposables.Dispose();
-        }
-    }
-
-    internal class Command : ICommand
-    {
-        public IObservableWithDefault<bool> IsEnabled { get; }
-
-        public Command()
-        {
-            var temp = new Subject<bool>();
-            IsEnabled = new ObservableWithDefault<bool>(temp, true);
         }
 
-        public void Execute()
+        protected override void PasteFunction()
         {
-
-        }
-    }
-
-    internal class ObservableWithDefault<T> : IObservableWithDefault<T>
-    {
-        public IObservable<T> Observable { get; }
-
-        public T Default { get; }
-
-        public ObservableWithDefault(IObservable<T> observable, T defaultValue)
-        {
-            Observable = observable;
-            Default = defaultValue;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿<ContentControl
+﻿<views:ContentBase
+    xmlns:views="clr-namespace:StudyApp.DockingContent.Base.Views;assembly=StudyApp.DockingContent.Base"
     x:Class="StudyApp.DockingContent.Property.Views.Property"
     x:ClassModifier="internal"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -12,4 +13,4 @@
     prism:ViewModelLocator.AutoWireViewModel="True" >
     <Grid>
     </Grid>
-</ContentControl>
+</views:ContentBase>

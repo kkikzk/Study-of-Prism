@@ -21,13 +21,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Design", "Design", "{606C05
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Design.StudyApp", "Design.StudyApp\Design.StudyApp.csproj", "{CA0035D8-BD14-41BC-A597-A5A3D69C470C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyApp.Menu", "StudyApp.Menu\StudyApp.Menu.csproj", "{47A8E814-0CA7-478D-BB56-717C0142054B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudyApp.Menu", "StudyApp.Menu\StudyApp.Menu.csproj", "{47A8E814-0CA7-478D-BB56-717C0142054B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyApp.ToolBar", "StudyApp.ToolBar\StudyApp.ToolBar.csproj", "{F81989A4-B712-4A9E-AC22-0A35F6470884}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudyApp.ToolBar", "StudyApp.ToolBar\StudyApp.ToolBar.csproj", "{F81989A4-B712-4A9E-AC22-0A35F6470884}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyApp.StatusBar", "StudyApp.StatusBar\StudyApp.StatusBar.csproj", "{94916279-DF96-4EE6-8C3D-7A3637EA7923}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudyApp.StatusBar", "StudyApp.StatusBar\StudyApp.StatusBar.csproj", "{94916279-DF96-4EE6-8C3D-7A3637EA7923}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyApp.Model", "StudyApp.Model\StudyApp.Model.csproj", "{2FFCBB3B-DE4C-41D0-B6FB-595297CE6186}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudyApp.Model", "StudyApp.Model\StudyApp.Model.csproj", "{2FFCBB3B-DE4C-41D0-B6FB-595297CE6186}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyApp.DockingContent.Base", "StudyApp.DockingContent.Base\StudyApp.DockingContent.Base.csproj", "{19F3C20B-155A-4D01-B4D7-3D635B9E146C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,6 +81,10 @@ Global
 		{2FFCBB3B-DE4C-41D0-B6FB-595297CE6186}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FFCBB3B-DE4C-41D0-B6FB-595297CE6186}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FFCBB3B-DE4C-41D0-B6FB-595297CE6186}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19F3C20B-155A-4D01-B4D7-3D635B9E146C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19F3C20B-155A-4D01-B4D7-3D635B9E146C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19F3C20B-155A-4D01-B4D7-3D635B9E146C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19F3C20B-155A-4D01-B4D7-3D635B9E146C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

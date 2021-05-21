@@ -12,7 +12,7 @@
     prism:ViewModelLocator.AutoWireViewModel="True" >
     <MenuItem Header="ファイル(_F)" />
     <MenuItem Header="編集(_E)">
-        <MenuItem Header="コピー(_C)" Command="{Binding CopyCommand}" IsEnabled="{Binding IsCopyEnabled}" />
-        <MenuItem Header="貼り付け(_C)" Command="{Binding PasteCommand}" IsEnabled="{Binding IsPasteEnabled}" />
+        <MenuItem Header="コピー(_C)" Command="{Binding CopyCommand}" IsEnabled="{Binding IsCopyEnabled.Value}" />
+        <MenuItem Header="貼り付け(_C)" Command="{Binding PasteCommand}" IsEnabled="{Binding IsPasteEnabled.Value}" />
     </MenuItem>
 </Menu>

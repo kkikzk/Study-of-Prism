@@ -24,23 +24,18 @@ namespace StudyApp.Menu.ViewModels
         {
             _activeViewManager = activeViewManager;
 
-            IsCopyEnabled = new ReactiveProperty<bool>(
-                _activeViewManager.ActiveView.Copy.IsEnabled.Observable, _activeViewManager.ActiveView.Copy.IsEnabled.Default)
-                .ToReadOnlyReactivePropertySlim().AddTo(_disposables);
+            IsCopyEnabled = Init(_activeViewManager.ActiveView.Copy, CopyCommand, _disposables);
+            IsPasteEnabled = Init(_activeViewManager.ActiveView.Paste, PasteCommand, _disposables);
+        }
 
-            CopyCommand.Subscribe(() =>
+        private static ReadOnlyReactivePropertySlim<bool> Init(ICommand command, ReactiveCommand reactiveCommand, CompositeDisposable disposables)
+        {
+            reactiveCommand.AddTo(disposables);
+            reactiveCommand.Subscribe(() =>
             {
-                _activeViewManager.ActiveView.Copy.Execute();
+                command.Execute();
             });
-
-            IsPasteEnabled = new ReactiveProperty<bool>(
-                _activeViewManager.ActiveView.Paste.IsEnabled.Observable, _activeViewManager.ActiveView.Paste.IsEnabled.Default)
-                .ToReadOnlyReactivePropertySlim().AddTo(_disposables);
-
-            PasteCommand.Subscribe(() =>
-            {
-                _activeViewManager.ActiveView.Paste.Execute();
-            });
+            return command.IsEnabled.ToReadOnlyReactivePropertySlim(true).AddTo(disposables);
         }
 
         public void Dispose()

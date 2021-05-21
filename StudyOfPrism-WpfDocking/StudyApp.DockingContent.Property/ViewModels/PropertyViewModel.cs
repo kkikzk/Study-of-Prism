@@ -1,20 +1,24 @@
-﻿using Prism.Mvvm;
-using System;
+﻿using Design.StudyApp.ActiveViewManager;
+using StudyApp.DockingContent.Base.ViewModels;
 using System.Reactive.Disposables;
 
 namespace StudyApp.DockingContent.Property.ViewModels
 {
-    internal class PropertyViewModel : BindableBase, IDisposable
+    internal class PropertyViewModel : ContentBaseViewModel
     {
         private readonly CompositeDisposable _disposables = new CompositeDisposable();
 
-        public PropertyViewModel()
+        public PropertyViewModel(IActiveViewManager activeViewManager)
+            : base(activeViewManager)
         {
         }
 
-        public void Dispose()
+        protected override void CopyFunction()
         {
-            _disposables.Dispose();
+        }
+
+        protected override void PasteFunction()
+        {
         }
     }
 }

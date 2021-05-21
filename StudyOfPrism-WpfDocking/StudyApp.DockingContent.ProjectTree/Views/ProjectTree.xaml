@@ -1,4 +1,5 @@
-﻿<UserControl
+﻿<views:ContentBase
+    xmlns:views="clr-namespace:StudyApp.DockingContent.Base.Views;assembly=StudyApp.DockingContent.Base"
     x:Class="StudyApp.DockingContent.ProjectTree.Views.ProjectTree"
     x:ClassModifier="internal"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -39,4 +40,4 @@
             </TreeView.ItemTemplate>
         </TreeView>
     </Grid>
-</UserControl>
+</views:ContentBase>

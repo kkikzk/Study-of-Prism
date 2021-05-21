@@ -21,9 +21,9 @@
         DockItemStateChanging="OnDockItemStateChanging"
         DockItemStateChanged="OnDockItemStateChanged"-->
         <dz:DockControl.DockItems>
-            <local:ProjectTree x:Name="projectTree" ShowAction="{dz:ShowAsDockPositionAction DockPosition=Left}" />
-            <local:Output x:Name="output" ShowAction="{dz:ShowAsDockPositionAction DockPosition=Bottom}" />
-            <local:Property x:Name="property" ShowAction="{dz:ShowAsDockPositionAction DockPosition=Right}" />
+            <local:ProjectTreeDockItem x:Name="projectTree" ShowAction="{dz:ShowAsDockPositionAction DockPosition=Left}" />
+            <local:OutputDockItem x:Name="output" ShowAction="{dz:ShowAsDockPositionAction DockPosition=Bottom}" />
+            <local:PropertyDockItem x:Name="property" ShowAction="{dz:ShowAsDockPositionAction DockPosition=Right}" />
             <!--
                 <local:SavedLayout x:Name="savedLayout" ShowAction="{dz:ShowAsDockPositionAction DockPosition=BottomAutoHide}" />
                 <local:Welcome x:Name="welcome" ShowAction="{dz:ShowAsDockPositionAction DockPosition=Document}" />-->
