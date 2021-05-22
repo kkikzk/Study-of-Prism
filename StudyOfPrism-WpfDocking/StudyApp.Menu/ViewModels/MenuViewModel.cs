@@ -3,6 +3,7 @@ using Prism.Mvvm;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 using System;
+using System.Diagnostics;
 using System.Reactive.Disposables;
 
 namespace StudyApp.Menu.ViewModels
@@ -35,7 +36,7 @@ namespace StudyApp.Menu.ViewModels
             {
                 command.Execute();
             });
-            return command.IsEnabled.ToReadOnlyReactivePropertySlim(true).AddTo(disposables);
+            return command.IsEnabled.ToReadOnlyReactivePropertySlim().AddTo(disposables);
         }
 
         public void Dispose()

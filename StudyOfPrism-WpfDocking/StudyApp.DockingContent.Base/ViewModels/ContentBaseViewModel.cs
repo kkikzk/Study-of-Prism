@@ -24,7 +24,7 @@ namespace StudyApp.DockingContent.Base.ViewModels
             Paste = new Command(PasteFunction, true);
         }
 
-        public void Activate()
+        public virtual　void Activate()
         {
             ActiveViewManager.Activate(this);
         }
