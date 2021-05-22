@@ -17,6 +17,13 @@ namespace StudyApp.DockingContent.ProjectTree.ViewModels
             Disposables.Add(_data);
         }
 
+        public override void Activate()
+        {
+            base.Activate();
+            _copy.OnNext(true);
+            _paste.OnNext(true);
+        }
+
         protected override void CopyFunction()
         {
         }

@@ -1,4 +1,5 @@
-﻿using Design.StudyApp.ActiveViewManager;
+﻿using Design.StudyApp;
+using Design.StudyApp.ActiveViewManager;
 using System;
 using System.Reactive.Disposables;
 using System.Reactive.Subjects;
@@ -16,25 +17,59 @@ namespace StudyApp.Model
 
             internal class Command : ICommand, IDisposable
             {
-                private readonly CompositeDisposable _disposables = new CompositeDisposable();
-                private Action _action;
-                private readonly Subject<bool> _isEnalbed;
-                private IDisposable _remover;
-
-                public ISubject<bool> IsEnabled { get { return _isEnalbed; } }
-
-                internal Command(Action action, ISubject<bool> isEnabled)
+                internal class ObservableWithValue<T> : IObservableWithValue<T>, IDisposable
                 {
-                    _isEnalbed = new Subject<bool>();
-                    _disposables.Add(_isEnalbed);
-                    _remover = isEnabled.Subscribe(_isEnalbed);
-                    _action = action;
+                    private readonly CompositeDisposable _disposables = new CompositeDisposable();
+
+                    public IObservable<T> Observable { get; }
+
+                    public T Value { private set; get; }
+
+                    internal ObservableWithValue(IObservable<T> observable, T value)
+                    {
+                        Observable = observable;
+                        Value = value;
+
+                        _disposables.Add(Observable.Subscribe(_ =>
+                        {
+                            Value = _;
+                        }));
+                    }
+
+                    public void Dispose()
+                    {
+                        _disposables.Dispose();
+                    }
                 }
 
-                internal void Update(Action action, ISubject<bool> isEnabled)
+                private readonly CompositeDisposable _disposables = new CompositeDisposable();
+                private readonly Subject<bool> _subject = new Subject<bool>();
+                private readonly ObservableWithValue<bool> _isEnalbed;
+                private Action _action;
+                private IDisposable _remover;
+
+                public IObservableWithValue<bool> IsEnabled { get { return _isEnalbed; } }
+
+                internal Command(Action action, IObservable<bool> isEnabled, bool value)
+                {
+                    _subject.OnNext(value);
+                    _remover = isEnabled.Subscribe(_subject);
+                    _isEnalbed = new ObservableWithValue<bool>(_subject, value);
+                    _action = action;
+
+                    _disposables.Add(_isEnalbed);
+                    _disposables.Add(_subject);
+                }
+
+                internal void Update(Action action, IObservableWithValue<bool> isEnabled)
                 {
                     _remover.Dispose();
-                    _remover = isEnabled.Subscribe(_isEnalbed);
+                    var currentValue = _isEnalbed.Value;
+                    _remover = isEnabled.Observable.Subscribe(_subject);
+                    if (currentValue != isEnabled.Value)
+                    {
+                        _subject.OnNext(isEnabled.Value);
+                    }
                     _action = action;
                 }
 
@@ -47,12 +82,6 @@ namespace StudyApp.Model
                 {
                     _disposables.Dispose();
                 }
-
-                public Command AddTo(CompositeDisposable disposables)
-                {
-                    disposables.Add(this);
-                    return this;
-                }
             }
 
             private readonly Command _copy;
@@ -63,10 +92,12 @@ namespace StudyApp.Model
 
             internal HandOverView()
             {
+                var defaultValue = false;
                 var subject = new Subject<bool>();
-                subject.OnNext(true);
-                _copy = new Command(() => { }, subject);
-                _paste = new Command(() => { }, subject);
+                _disposables.Add(subject);
+                subject.OnNext(defaultValue);
+                _copy = new Command(() => { }, subject, defaultValue);
+                _paste = new Command(() => { }, subject, defaultValue);
             }
 
             internal void SetView(IActiveView view)

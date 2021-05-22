@@ -1,6 +1,4 @@
-﻿using System.Reactive.Subjects;
-
-namespace Design.StudyApp.ActiveViewManager
+﻿namespace Design.StudyApp.ActiveViewManager
 {
     public interface IActiveView
     {
@@ -11,7 +9,7 @@ namespace Design.StudyApp.ActiveViewManager
 
     public interface ICommand
     {
-        ISubject<bool> IsEnabled { get; }
+        IObservableWithValue<bool> IsEnabled { get; }
 
         void Execute();
     }

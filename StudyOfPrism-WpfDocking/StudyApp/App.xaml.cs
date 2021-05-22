@@ -69,16 +69,16 @@ namespace StudyApp
         }
     }
 
-    public class ObservableWithDefault<T> : IObservableWithDefault<T>
+    public class ObservableWithDefault<T> : IObservableWithValue<T>
     {
         public IObservable<T> Observable { private set; get; }
 
-        public T Default { private set; get; }
+        public T Value { private set; get; }
 
         public ObservableWithDefault(T value)
         {
             Observable = new Subject<T>();
-            Default = value;
+            Value = value;
         }
     }
 

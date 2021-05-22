@@ -13,6 +13,13 @@ namespace StudyApp.DockingContent.Output.ViewModels
         {
         }
 
+        public override void Activate()
+        {
+            base.Activate();
+            _copy.OnNext(false);
+            _paste.OnNext(false);
+        }
+
         protected override void CopyFunction()
         {
         }

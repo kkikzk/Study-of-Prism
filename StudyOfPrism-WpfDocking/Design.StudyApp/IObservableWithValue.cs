@@ -2,9 +2,10 @@
 
 namespace Design.StudyApp
 {
-    public interface IObservableWithDefault<T>
+    public interface IObservableWithValue<out T>
     {
         IObservable<T> Observable { get; }
-        T Default { get; }
+
+        T Value { get; }
     }
 }
