@@ -1,5 +1,6 @@
 ﻿using Design.StudyApp;
 using Design.StudyApp.ActiveViewManager;
+using Design.StudyApp.ProjectContentManager;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Mvvm;
@@ -37,6 +38,7 @@ namespace StudyApp
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterInstance(_data.ActiveViewManager);
+            containerRegistry.RegisterInstance(_data.ProjectContentManager);
             containerRegistry.RegisterInstance(_data.ProjectTreeData);
         }
 
@@ -56,6 +58,8 @@ namespace StudyApp
     {
         public IActiveViewManager ActiveViewManager { get; } = new ActiveViewManager();
 
+        public IProjectContentManager ProjectContentManager { get; }
+
         public IProjectTreeData ProjectTreeData { get; }
 
         public StudyAppData()
@@ -66,6 +70,11 @@ namespace StudyApp
             var controller = new ProjectTreeData("コントローラ1: ORiN3.Provider.DNWA.Dummy", true, programRootNode);
             var root = new ProjectTreeData("プロジェクト", true, controller);
             ProjectTreeData = new ProjectTreeData("Root", true, root);
+
+            ProjectContentManager = new ProjectContentManager(() =>
+            {
+                programRootNode.Children.Add(new ProjectTreeData("Hoge", true));
+            });
         }
     }
 
