@@ -11,6 +11,7 @@
     <PackageReference Include="System.Reactive" Version="5.0.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Design.StudyApp.DockingContent\Design.StudyApp.DockingContent.csproj" />
     <ProjectReference Include="..\Design.StudyApp\Design.StudyApp.csproj" />
     <ProjectReference Include="..\StudyApp.DockingContent.Base\StudyApp.DockingContent.Base.csproj" />
   </ItemGroup>

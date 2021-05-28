@@ -1,4 +1,5 @@
-﻿using Prism.Events;
+﻿using Design.StudyApp.DockingContent;
+using Prism.Events;
 using Prism.Mvvm;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
@@ -10,10 +11,6 @@ namespace StudyApp.DockingContent.ViewModels
 {
     internal class OutputDockItemViewModel : BindableBase, IDisposable
     {
-        internal class OutputDockItemSelectedEvent : PubSubEvent
-        {
-        }
-
         private readonly CompositeDisposable _disposables = new CompositeDisposable();
 
         public IEventAggregator EventAggregator { get; }

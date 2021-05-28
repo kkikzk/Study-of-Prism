@@ -1,5 +1,7 @@
 ﻿using Design.StudyApp.ActiveViewManager;
+using Design.StudyApp.DockingContent;
 using Design.StudyApp.ProjectContentManager;
+using Prism.Events;
 using Reactive.Bindings;
 using StudyApp.DockingContent.Base.ViewModels;
 
@@ -12,12 +14,19 @@ namespace StudyApp.DockingContent.ProjectTree.ViewModels
 
         public ReactiveCollection<IProjectTreeData> Children { get { return _data.Children; } }
 
-        public ProjectTreeViewModel(IProjectTreeData data, IActiveViewManager activeViewManager, IProjectContentManager projectContentManager)
+        public ProjectTreeViewModel(IProjectTreeData data, IActiveViewManager activeViewManager, IProjectContentManager projectContentManager, IEventAggregator eventAggregator)
             : base(activeViewManager)
         {
             _data = data;
             Disposables.Add(_data);
             _projectContentManager = projectContentManager;
+
+            eventAggregator.GetEvent<ProjectTreeDockItemSelectedEvent>().Subscribe(ProjectTreeDockItemSelected, ThreadOption.UIThread);
+        }
+
+        private void ProjectTreeDockItemSelected()
+        {
+            Activate();
         }
 
         public override void Activate()
